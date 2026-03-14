@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Deep midnight navy + warm gold Islamic palette */
+    --background: 18 0.04 255;
+    --foreground: 92 0.02 255;
+
+    --card: 21 0.05 255;
+    --card-foreground: 92 0.02 255;
+
+    --popover: 21 0.05 255;
+    --popover-foreground: 92 0.02 255;
+
+    --primary: 78 0.18 75;
+    --primary-foreground: 15 0.03 255;
+
+    --secondary: 28 0.06 255;
+    --secondary-foreground: 82 0.04 255;
+
+    --muted: 26 0.05 255;
+    --muted-foreground: 60 0.04 255;
+
+    --accent: 72 0.16 75;
+    --accent-foreground: 15 0.03 255;
+
+    --destructive: 55 0.22 25;
+    --destructive-foreground: 98 0.01 0;
+
+    --border: 30 0.06 255;
+    --input: 28 0.06 255;
+    --ring: 78 0.18 75;
+
+    --radius: 0.75rem;
+
+    --chart-1: 78 0.18 75;
+    --chart-2: 65 0.14 200;
+    --chart-3: 70 0.12 150;
+    --chart-4: 60 0.1 255;
+    --chart-5: 55 0.16 30;
+
+    --sidebar: 20 0.05 255;
+    --sidebar-foreground: 92 0.02 255;
+    --sidebar-primary: 78 0.18 75;
+    --sidebar-primary-foreground: 15 0.03 255;
+    --sidebar-accent: 28 0.06 255;
+    --sidebar-accent-foreground: 82 0.04 255;
+    --sidebar-border: 30 0.06 255;
+    --sidebar-ring: 78 0.18 75;
+
+    /* Custom prayer app tokens */
+    --prayer-gold: 78 0.18 75;
+    --prayer-active-glow: 72 0.2 80;
+    --prayer-nav: 15 0.04 255;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}
+
+/* Islamic geometric background pattern */
+.islamic-pattern {
+  background-color: oklch(var(--background));
+  background-image: radial-gradient(
+      ellipse 80% 60% at 50% -10%,
+      oklch(28 0.08 255 / 0.6) 0%,
+      transparent 70%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23ffffff08' stroke-width='0.5'%3E%3Cpolygon points='40,5 52,20 68,20 57,32 62,48 40,38 18,48 23,32 12,20 28,20'/%3E%3Cpolygon points='40,15 49,26 62,26 53,35 57,47 40,41 23,47 27,35 18,26 31,26'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Glowing active prayer */
+@keyframes prayer-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 oklch(78 0.18 75 / 0);
+  }
+  50% {
+    box-shadow: 0 0 24px 4px oklch(78 0.18 75 / 0.25);
+  }
+}
+
+.prayer-active {
+  animation: prayer-pulse 3s ease-in-out infinite;
+}
+
+/* Countdown shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.countdown-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(78 0.18 75) 0%,
+    oklch(90 0.12 75) 40%,
+    oklch(78 0.18 75) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Crescent moon SVG decorative */
+.crescent-glow {
+  filter: drop-shadow(0 0 12px oklch(78 0.18 75 / 0.6));
+}
